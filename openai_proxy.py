@@ -1,7 +1,7 @@
 import os
 import logging
 import uuid
-from flask import Flask, request, jsonify, Response, g
+from flask import Flask, request, jsonify, Response, g, has_app_context
 import requests
 from requests.exceptions import RequestException, HTTPError, ConnectionError, Timeout
 from dotenv import load_dotenv
@@ -16,8 +16,8 @@ app = Flask(__name__)
 
 class RequestContextFilter(logging.Filter):
     def filter(self, record):
-        record.request_id = getattr(g, "request_id", "none")
-        record.client_ip = getattr(g, "client_ip", "none")
+        record.request_id = getattr(g, "request_id", "none") if has_app_context() else "none"
+        record.client_ip = getattr(g, "client_ip", "none") if has_app_context() else "none"
         return True
 
 logging.basicConfig(

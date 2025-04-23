@@ -1,0 +1,13 @@
+[project]
+name = "openaiproxy"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "dotenv>=0.9.9",
+    "flask>=3.1.0",
+    "gunicorn>=23.0.0",
+    "pysocks>=1.7.1",
+    "requests>=2.32.3",
+]
